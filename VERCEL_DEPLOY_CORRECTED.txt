@@ -1,0 +1,175 @@
+🚀 DEPLOY SNAPLINK ON VERCEL - CORRECTED GUIDE
+══════════════════════════════════════════════════════════════════════════════
+
+The error you saw is fixed! Here's the correct way to deploy:
+
+══════════════════════════════════════════════════════════════════════════════
+✅ STEP-BY-STEP DEPLOYMENT (3 MINUTES)
+══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: Go to Vercel
+────────────────────
+https://vercel.com/new
+
+STEP 2: Import Your Repository
+───────────────────────────────
+1. You should see "Create Git Repository" option
+2. Click "Continue with GitHub"
+3. Authorize Vercel to access your GitHub
+4. Find "snaplink" in your repositories
+5. Click "Import"
+
+STEP 3: Configure Project Settings
+────────────────────────────────────
+On the setup page, you'll see:
+
+Project Name:
+  → snaplink (auto-filled, OK)
+
+Framework:
+  → Select "None" (NOT "Other", NOT "html")
+  → This is key! SnapLink is a static HTML/CSS/JS site
+
+Root Directory:
+  → ./ (default, leave it)
+
+Build Command:
+  → Leave EMPTY (no build needed for static files)
+
+Install Command:
+  → Leave EMPTY
+
+Output Directory:
+  → Leave EMPTY
+
+Environment Variables:
+  → None needed
+
+Click "Deploy" Button
+
+STEP 4: Wait for Build
+──────────────────────
+You'll see:
+✓ Cloning repository...
+✓ Installing dependencies...
+✓ Building project...
+✓ Uploading artifacts...
+
+Takes 30-60 seconds
+
+STEP 5: Success! Get Your URL
+──────────────────────────────
+✅ Deployment complete!
+
+You'll see a "Congratulations!" message with your live URL:
+https://snaplink-RANDOM.vercel.app
+
+COPY THIS URL! 🎉
+
+══════════════════════════════════════════════════════════════════════════════
+🌐 TEST YOUR LIVE APP
+══════════════════════════════════════════════════════════════════════════════
+
+Open your live URL and test:
+
+✓ Hero section loads
+✓ Paste a URL in input
+✓ Click "Shorten Now"
+✓ See result card appear
+✓ QR code shows
+✓ Copy button works
+✓ Open link works
+✓ WhatsApp sharing works
+✓ Mobile responsive (test on phone)
+✓ All animations smooth
+✓ No console errors (F12 → Console)
+
+══════════════════════════════════════════════════════════════════════════════
+⚠️  IF YOU GET AN ERROR
+══════════════════════════════════════════════════════════════════════════════
+
+"Invalid request: `framework` should be equal to one of the allowed values..."
+
+Solution:
+1. Go back to project settings
+2. Click "Settings" tab
+3. Look for "Framework" setting
+4. Change it to "None" (not "html", not "other")
+5. Save and redeploy
+
+══════════════════════════════════════════════════════════════════════════════
+🔄 IF DEPLOYMENT FAILS
+══════════════════════════════════════════════════════════════════════════════
+
+1. Check the deployment logs (click "View build logs")
+2. Common issues:
+   • Framework set incorrectly → Change to "None"
+   • Build command configured → Leave empty
+   • Wrong directory → Use ./
+
+3. To redeploy:
+   • Click "Deployments" tab
+   • Click the three dots on latest deployment
+   • Click "Redeploy"
+
+══════════════════════════════════════════════════════════════════════════════
+📱 SHARE YOUR LIVE APP
+══════════════════════════════════════════════════════════════════════════════
+
+Once live, share it:
+
+Tweet:
+  "Just launched SnapLink - the fastest URL shortener! 🚀 
+   Try it: https://snaplink-abc123.vercel.app"
+
+LinkedIn:
+  "Excited to share my new project: SnapLink URL Shortener
+   Built with HTML, CSS, JavaScript with premium design
+   Check it out: https://snaplink-abc123.vercel.app"
+
+Email:
+  Subject: Check out my SnapLink URL Shortener!
+  Body: I built a beautiful URL shortener. Try it here: [YOUR_URL]
+
+══════════════════════════════════════════════════════════════════════════════
+⭐ OPTIONAL: CUSTOM DOMAIN
+══════════════════════════════════════════════════════════════════════════════
+
+After deployment, add a custom domain:
+
+1. Go to your Vercel project dashboard
+2. Click "Settings"
+3. Click "Domains"
+4. Add your domain (buy from namecheap.com for $1-5)
+5. Follow DNS instructions
+6. Your app is now at: https://snaplink.dev (or your domain)
+
+══════════════════════════════════════════════════════════════════════════════
+✅ YOU'RE READY!
+══════════════════════════════════════════════════════════════════════════════
+
+Your SnapLink is now:
+✅ Built & tested locally
+✅ On GitHub (6 commits)
+✅ Ready to deploy to Vercel
+✅ Configured correctly
+✅ About to be LIVE!
+
+Next action:
+1. Go to https://vercel.com/new
+2. Import your snaplink repository
+3. Set Framework to "None"
+4. Click Deploy
+5. Copy your live URL
+6. Share with the world!
+
+Your app will be LIVE in 3 minutes! 🚀
+
+══════════════════════════════════════════════════════════════════════════════
+
+Need help?
+• Vercel Docs: https://vercel.com/docs
+• GitHub Docs: https://docs.github.com
+• Contact: Ask in Vercel deployment logs
+
+Good luck! Your SnapLink is about to go LIVE! ✨
