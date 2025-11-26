@@ -3,184 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapLink – The Fastest URL Shortener</title>
-    <meta name="description" content="Free URL shortener with instant QR codes and real-time analytics">
+    <title>NeonLink – The Most Beautiful URL Shortener 2025</title>
+    <meta name="description" content="Free URL shortener with neon design, instant QR codes and real-time analytics">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23000000' width='100' height='100'/%3E%3Ctext x='50' y='60' font-size='70' fill='%238B00FF' text-anchor='middle' font-weight='bold'%3EN%3C/text%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='3' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3Ctext x='50' y='60' font-size='70' fill='%2300F2EA' text-anchor='middle' font-weight='bold' opacity='0.5' filter='url(%23glow)'%3EN%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-    <!-- Canvas for cursor trail effect -->
-    <canvas id="trailCanvas"></canvas>
+    <!-- Canvas for effects -->
+    <canvas id="gridCanvas"></canvas>
+    <canvas id="particleCanvas"></canvas>
 
-    <!-- Particle background -->
-    <div class="particles" id="particles"></div>
+    <!-- Animated background grid -->
+    <div class="background-grid"></div>
+    <div class="floating-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
 
     <main>
         <!-- HERO SECTION -->
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Shorten Links. Track Clicks. Dominate.</h1>
-                <p class="hero-subtitle">Free • No signup • Instant QR • Real-time analytics</p>
+                <h1 class="hero-title">
+                    <span class="title-word">Shorten.</span>
+                    <span class="title-word">Track.</span>
+                    <span class="title-word">Go Viral.</span>
+                </h1>
+                <p class="hero-subtitle">Free forever • No signup • Instant QR • Live Analytics</p>
 
-                <div class="input-container">
-                    <input 
-                        type="url" 
-                        id="urlInput" 
-                        class="url-input" 
-                        placeholder="Paste your long URL here..."
-                        autocomplete="off"
-                    >
-                    <button class="btn-shorten" id="shortenBtn">Shorten Now</button>
+                <div class="input-wrapper">
+                    <div class="input-container">
+                        <label for="urlInput" class="floating-label">Paste your long URL here...</label>
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            class="neon-input" 
+                            placeholder=""
+                            autocomplete="off"
+                        >
+                        <div class="input-glow"></div>
+                    </div>
+                    <button class="btn-shorten" id="shortenBtn">
+                        <span class="btn-text">Shorten Now</span>
+                        <span class="btn-glow"></span>
+                    </button>
                 </div>
 
-                <p class="trust-text">✓ Trusted by 50,000+ users</p>
+                <p class="hero-trust">✨ Trusted by 100,000+ creators</p>
             </div>
 
-            <!-- Wave animation SVG -->
-            <svg class="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,60 Q300,0 600,60 T1200,60 L1200,120 L0,120 Z" fill="rgba(0,242,234,0.05)"/>
+            <!-- Animated waves -->
+            <svg class="neon-waves" viewBox="0 0 1200 300" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#8B00FF;stop-opacity:0.3" />
+                        <stop offset="50%" style="stop-color:#00F2EA;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#FF00FF;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,100 Q300,50 600,100 T1200,100 L1200,300 L0,300 Z" fill="url(#waveGradient)"/>
+                <path d="M0,150 Q300,100 600,150 T1200,150 L1200,300 L0,300 Z" fill="url(#waveGradient)" opacity="0.5"/>
             </svg>
         </section>
 
-        <!-- RESULT CARD SECTION (Hidden initially) -->
-        <section class="result-section" id="resultSection" style="display: none;">
-            <div class="result-card glass-effect">
+        <!-- RESULT CARD -->
+        <div class="result-overlay" id="resultOverlay">
+            <div class="result-card" id="resultCard">
+                <button class="result-close" id="closeResult">✕</button>
+                
                 <div class="result-header">
-                    <h2>Your Short Link is Ready! 🎉</h2>
-                    <button class="btn-close" id="closeResult">&times;</button>
+                    <h2>Your Link is Ready 🚀</h2>
                 </div>
 
                 <div class="result-content">
-                    <div class="link-display">
-                        <input 
-                            type="text" 
-                            class="short-link-input" 
-                            id="shortLinkInput" 
-                            readonly
-                        >
-                        <button class="btn-copy" id="copyBtn" title="Click to copy">
-                            <span id="copyIcon">📋</span>
-                        </button>
+                    <div class="short-link-box">
+                        <input type="text" id="shortLinkInput" class="short-link" readonly>
+                        <button class="btn-copy" id="copyBtn" title="Copy">📋</button>
                     </div>
 
-                    <div class="result-actions">
-                        <button class="btn-action btn-primary" id="openLinkBtn">
-                            <span>🌐</span> Open Link
+                    <div class="result-buttons">
+                        <button class="btn-result btn-copy-main" id="copyMainBtn">
+                            <span>📋</span> Copy
                         </button>
-                        <button class="btn-action btn-secondary" id="shareWhatsappBtn">
-                            <span>💬</span> Share WhatsApp
-                        </button>
-                        <button class="btn-action btn-tertiary" id="downloadQRBtn">
+                        <button class="btn-result btn-qr" id="qrBtn">
                             <span>📱</span> QR Code
                         </button>
+                        <button class="btn-result btn-whatsapp" id="whatsappBtn">
+                            <span>💬</span> WhatsApp
+                        </button>
+                        <button class="btn-result btn-twitter" id="twitterBtn">
+                            <span>𝕏</span> Twitter
+                        </button>
                     </div>
 
-                    <div class="qr-container" id="qrContainer">
-                        <img id="qrImage" src="" alt="QR Code" class="qr-code">
+                    <div class="qr-display" id="qrDisplay">
+                        <img id="qrImage" src="" alt="QR Code">
                     </div>
 
-                    <div class="click-counter">
-                        <div class="counter-stat">
-                            <span class="counter-number" id="clickCounter">0</span>
-                            <span class="counter-label">clicks</span>
-                        </div>
+                    <div class="click-counter-display">
+                        <span class="counter-fire">🔥</span>
+                        <div class="counter-value" id="clickCounter">0</div>
+                        <span class="counter-label">Live Clicks</span>
                     </div>
-
-                    <button class="btn-another" id="anotherBtn">↻ Shorten Another</button>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- FEATURES SECTION -->
         <section class="features">
-            <h2>Why Choose SnapLink?</h2>
+            <h2 class="section-title">Why NeonLink?</h2>
             <div class="features-grid">
-                <div class="feature-card glass-effect">
+                <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>Lightning Fast</h3>
-                    <p>Shorten URLs in milliseconds with our global CDN infrastructure</p>
+                    <h3>Blazing Fast CDN</h3>
+                    <p>Lightning-fast links powered by global CDN</p>
+                    <div class="card-glow"></div>
                 </div>
 
-                <div class="feature-card glass-effect">
+                <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Detailed Analytics</h3>
-                    <p class="pro-badge"><span>Coming Soon</span></p>
-                    <p>Real-time click tracking and visitor insights</p>
+                    <h3>Real-time Analytics</h3>
+                    <p>Live click tracking with beautiful graphs</p>
+                    <div class="card-glow"></div>
                 </div>
 
-                <div class="feature-card glass-effect">
+                <div class="feature-card">
                     <div class="feature-icon">🎯</div>
-                    <h3>Custom Domains</h3>
-                    <p class="pro-badge"><span>Pro Feature</span></p>
-                    <p>Brand your links with custom domains</p>
+                    <h3>Custom Links</h3>
+                    <p>Create branded, custom shortened URLs</p>
+                    <div class="card-glow"></div>
                 </div>
 
-                <div class="feature-card glass-effect">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Password Protected</h3>
+                    <p>Secure your links with password protection</p>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3>QR Codes & API</h3>
-                    <p class="pro-badge"><span>Free Forever</span></p>
-                    <p>Generate QR codes and access our powerful API</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTIMONIALS SECTION -->
-        <section class="testimonials">
-            <h2>Loved by Creators & Developers</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card glass-effect">
-                    <div class="testimonial-header">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2300f2ea'/%3E%3Ctext x='50' y='50' font-size='60' fill='%230a0a0a' text-anchor='middle' dominant-baseline='central' font-weight='bold'%3ESJ%3C/text%3E%3C/svg%3E" alt="Avatar" class="avatar">
-                        <div>
-                            <p class="testimonial-name">Sarah Johnson</p>
-                            <p class="testimonial-role">Digital Marketer</p>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">"SnapLink saved me hours every week. My link management is now effortless!"</p>
-                    <p class="testimonial-stat">10k+ links shortened</p>
+                    <h3>QR with Logo</h3>
+                    <p>Generate branded QR codes with your logo</p>
+                    <div class="card-glow"></div>
                 </div>
 
-                <div class="testimonial-card glass-effect">
-                    <div class="testimonial-header">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ff6bff'/%3E%3Ctext x='50' y='50' font-size='60' fill='%230a0a0a' text-anchor='middle' dominant-baseline='central' font-weight='bold'%3EMK%3C/text%3E%3C/svg%3E" alt="Avatar" class="avatar">
-                        <div>
-                            <p class="testimonial-name">Mike Kumar</p>
-                            <p class="testimonial-role">Content Creator</p>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">"The QR code feature is amazing. My audience loves scanning instead of typing!"</p>
-                    <p class="testimonial-stat">10k+ links shortened</p>
-                </div>
-
-                <div class="testimonial-card glass-effect">
-                    <div class="testimonial-header">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2300f2ea'/%3E%3Ctext x='50' y='50' font-size='60' fill='%230a0a0a' text-anchor='middle' dominant-baseline='central' font-weight='bold'%3EAL%3C/text%3E%3C/svg%3E" alt="Avatar" class="avatar">
-                        <div>
-                            <p class="testimonial-name">Alex Lee</p>
-                            <p class="testimonial-role">Developer</p>
-                        </div>
-                    </div>
-                    <p class="testimonial-text">"The API is well-documented and super reliable. Best URL shortener out there!"</p>
-                    <p class="testimonial-stat">10k+ links shortened</p>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>API Access</h3>
+                    <p>Developer-friendly API for integration</p>
+                    <div class="card-glow"></div>
                 </div>
             </div>
         </section>
 
         <!-- STATS SECTION -->
         <section class="stats">
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number" id="stat1">1.2M</div>
-                    <div class="stat-label">Links Created</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat1">2.5M</div>
+                    <div class="stat-label">Links Shortened</div>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-number" id="stat2">48M</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat2">89M</div>
                     <div class="stat-label">Clicks Tracked</div>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-number" id="stat3">99.9%</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat3">187</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat4">100%</div>
                     <div class="stat-label">Uptime</div>
                 </div>
             </div>
@@ -189,30 +184,28 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-credit">Made with ❤️ by <strong>Hack3r</strong></p>
-            <div class="social-links">
-                <a href="https://github.com" target="_blank" title="GitHub" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                </a>
-                <a href="https://twitter.com" target="_blank" title="Twitter" aria-label="Twitter">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7a10.6 10.6 0 01-9-5.5z"/></svg>
-                </a>
-                <a href="https://linkedin.com" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-                <a href="https://instagram.com" target="_blank" title="Instagram" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="3" fill="#0a0a0a"/><circle cx="18" cy="6" r="1" fill="#0a0a0a"/></svg>
-                </a>
-            </div>
-            <p class="footer-copyright">© 2025 SnapLink – All rights reserved</p>
+        <p class="footer-text">Made with <span class="fire-emoji">🔥</span> by <strong>Hack3r</strong></p>
+        <div class="social-icons">
+            <a href="https://twitter.com" target="_blank" title="Twitter" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7a10.6 10.6 0 01-9-5.5z"/></svg>
+            </a>
+            <a href="https://github.com" target="_blank" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="3" fill="#000000"/><circle cx="18" cy="6" r="1" fill="#000000"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
         </div>
+        <p class="footer-copyright">© 2025 NeonLink – All rights reserved</p>
     </footer>
 
     <!-- Toast notification -->
-    <div class="toast" id="toast"></div>
+    <div class="neon-toast" id="toast"></div>
 
-    <!-- Confetti script -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
