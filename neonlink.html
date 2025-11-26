@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonLink – The Most Beautiful URL Shortener</title>
+    <meta name="description" content="Shorten links with stunning cyberpunk design. Real-time analytics, QR codes, instant sharing.">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23000' width='100' height='100'/%3E%3Ctext x='50' y='65' font-size='70' font-weight='bold' fill='%238B00FF' text-anchor='middle' font-family='Arial'%3EN%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%23000' width='180' height='180' rx='40'/%3E%3Ctext x='90' y='125' font-size='100' font-weight='bold' fill='%238B00FF' text-anchor='middle' font-family='Arial' filter='drop-shadow(0 0 20px %238B00FF)'%3EN%3C/text%3E%3C/svg%3E">
+    
+    <link rel="stylesheet" href="neonlink.css">
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Grid Background -->
+    <div class="grid-background"></div>
+    
+    <!-- Floating Particles -->
+    <div class="particles-container" id="particlesContainer"></div>
+    
+    <!-- Neon Orbs (Floating Elements) -->
+    <div class="neon-orb orb-1"></div>
+    <div class="neon-orb orb-2"></div>
+    <div class="neon-orb orb-3"></div>
+    
+    <!-- Glitch Effect Element -->
+    <div class="glitch-overlay" id="glitchOverlay"></div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="heroSection">
+            <div class="hero-content">
+                <h1 class="hero-title neon-text" data-text="Shorten. Track. Go Viral.">Shorten. Track. Go Viral.</h1>
+                <p class="hero-subtitle">Free forever • No signup • Instant QR • Live Analytics</p>
+
+                <div class="input-wrapper">
+                    <div class="input-container">
+                        <label for="urlInput" class="floating-label">Paste your URL here...</label>
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            class="neon-input" 
+                            placeholder="https://example.com/very/long/url"
+                            autocomplete="off"
+                        >
+                        <div class="input-glow"></div>
+                    </div>
+                    <button class="btn-shorten neon-button" id="shortenBtn">
+                        <span class="button-text">Shorten Now</span>
+                        <span class="button-glow"></span>
+                    </button>
+                </div>
+
+                <p class="trust-text">✨ Join 50,000+ users shortening links</p>
+            </div>
+
+            <!-- Floating Waves -->
+            <svg class="wave-container" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8B00FF;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#00F2EA;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,60 Q300,20 600,60 T1200,60 L1200,120 L0,120 Z" fill="url(#waveGradient)"/>
+            </svg>
+        </section>
+
+        <!-- RESULT CARD (Hidden initially) -->
+        <section class="result-section" id="resultSection" style="display: none;">
+            <div class="result-card glass-neon">
+                <div class="result-header">
+                    <h2>🔥 Your Link is Ready!</h2>
+                    <button class="btn-close" id="closeResult">&times;</button>
+                </div>
+
+                <div class="result-content">
+                    <div class="link-display-container">
+                        <div class="link-display">
+                            <input type="text" id="shortLinkInput" class="short-link-box" readonly>
+                            <button class="btn-copy neon-glow-btn" id="copyBtn" title="Copy to clipboard">📋 Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="result-buttons">
+                        <button class="neon-btn-action" id="qrBtn" title="Download QR Code">📱 QR Code</button>
+                        <button class="neon-btn-action" id="shareWhatsappBtn" title="Share on WhatsApp">💬 WhatsApp</button>
+                        <button class="neon-btn-action" id="shareTwitterBtn" title="Share on Twitter">𝕏 Twitter</button>
+                        <button class="neon-btn-action" id="openLinkBtn" title="Open link">🌐 Open</button>
+                    </div>
+
+                    <div class="qr-section">
+                        <div class="qr-container glass-neon">
+                            <img id="qrImage" src="" alt="QR Code" class="qr-image">
+                        </div>
+                    </div>
+
+                    <div class="click-counter-section">
+                        <div class="click-stat">
+                            <span class="click-number" id="clickCounter">0</span>
+                            <span class="click-label">clicks</span>
+                            <span class="fire-emoji">🔥</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-another neon-border-btn" id="anotherBtn">↻ Shorten Another</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section class="features" id="featuresSection">
+            <h2 class="section-title neon-text">Why Choose NeonLink?</h2>
+            <div class="features-grid">
+                <div class="feature-card glass-neon" style="--glow-color: #FF00FF">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Blazing Fast CDN</h3>
+                    <p>Global CDN ensures your links load instantly anywhere</p>
+                </div>
+
+                <div class="feature-card glass-neon" style="--glow-color: #00F2EA">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Watch clicks come in live with detailed insights</p>
+                    <div class="mini-graph">
+                        <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <polyline points="0,30 15,15 30,25 45,10 60,20 75,8 90,18 100,5" fill="none" stroke="#00F2EA" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="feature-card glass-neon" style="--glow-color: #FF00FF">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Custom Links</h3>
+                    <p>Create branded short links with custom domains</p>
+                </div>
+
+                <div class="feature-card glass-neon" style="--glow-color: #00F2EA">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Password Protected</h3>
+                    <p>Secure your links with password protection</p>
+                </div>
+
+                <div class="feature-card glass-neon" style="--glow-color: #FF00FF">
+                    <div class="feature-icon">📱</div>
+                    <h3>QR Codes + Logo</h3>
+                    <p>Generate branded QR codes with your logo</p>
+                </div>
+
+                <div class="feature-card glass-neon" style="--glow-color: #00F2EA">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>API Access</h3>
+                    <p>Developer-friendly API for your applications</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="stats" id="statsSection">
+            <h2 class="section-title neon-text">Trusted Worldwide</h2>
+            <div class="stats-container">
+                <div class="stat-card glass-neon">
+                    <div class="stat-value neon-text" id="stat1">2.5M</div>
+                    <div class="stat-label">Links Shortened</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-card glass-neon">
+                    <div class="stat-value neon-text" id="stat2">89M</div>
+                    <div class="stat-label">Clicks Tracked</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-card glass-neon">
+                    <div class="stat-value neon-text" id="stat3">187</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-card glass-neon">
+                    <div class="stat-value neon-text" id="stat4">100%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-text">Made with 🔥 by <strong>Hack3r</strong></p>
+        <div class="social-icons">
+            <a href="https://twitter.com" target="_blank" title="Twitter/X" class="social-link neon-glow">𝕏</a>
+            <a href="https://github.com" target="_blank" title="GitHub" class="social-link neon-glow">⚙️</a>
+            <a href="https://instagram.com" target="_blank" title="Instagram" class="social-link neon-glow">📸</a>
+            <a href="https://linkedin.com" target="_blank" title="LinkedIn" class="social-link neon-glow">💼</a>
+        </div>
+        <p class="footer-copyright">© 2025 NeonLink – All rights reserved</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast neon-toast" id="toast"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
+    <script src="neonlink.js"></script>
+</body>
+</html>
