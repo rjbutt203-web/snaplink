@@ -1,0 +1,51 @@
+# Snaplink URL Shortener
+
+A premium, modern URL shortener built with glassmorphism design and real-time analytics.
+
+## Quick Start
+
+1. Clone this repository
+2. Open `index.html` in your browser
+3. Start shortening links instantly!
+
+## Features
+
+- ⚡ Lightning-fast URL shortening
+- 📱 Instant QR code generation
+- 📊 Real-time click tracking
+- 🎨 Premium dark neon design
+- 📋 One-click copy to clipboard
+- 💬 WhatsApp sharing integration
+- 🎉 Confetti celebration animations
+- 📱 100% mobile responsive
+- ♿ Fully accessible
+
+## Deploy on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/snaplink)
+
+Or manually:
+
+1. Push to GitHub
+2. Go to [Vercel](https://vercel.com)
+3. Import repository
+4. Click Deploy
+
+Your site will be live in seconds! 🚀
+
+## Files
+
+- `index.html` - HTML structure
+- `styles.css` - Styling & animations (3000+ lines)
+- `script.js` - Full JavaScript functionality
+- `vercel.json` - Deployment configuration
+
+## APIs Used
+
+- TinyURL for URL shortening
+- QR Server for QR code generation
+- Canvas Confetti for animations
+
+## License
+
+MIT - Free to use and modify
