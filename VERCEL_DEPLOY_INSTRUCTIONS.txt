@@ -26,9 +26,11 @@ STEP 3: Configure Project
 ──────────────────────────
 These settings should be auto-filled:
 • Project Name: snaplink
-• Framework Preset: "Other" (Important!)
+• Framework Preset: "None" or leave as detected
 • Root Directory: ./ (default)
 • Build Command: (leave empty)
+• Install Command: (leave empty)
+• Output Directory: (leave empty or ./)
 • Environment Variables: (none needed)
 
 Click "Deploy"
