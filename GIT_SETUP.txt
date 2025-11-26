@@ -1,0 +1,100 @@
+🔐 GITHUB AUTHENTICATION SETUP
+══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: Create Personal Access Token
+────────────────────────────────────
+
+1. Go to: https://github.com/settings/personal-access-tokens/new
+   (or: GitHub Settings → Developer settings → Personal access tokens → Tokens (classic))
+
+2. Configure Token:
+   Name: "SnapLink Deployment"
+   Expiration: 90 days (or longer)
+   
+3. Select Scopes (checkboxes):
+   ☑ repo (Full control of private repositories)
+   ☑ workflow (Update GitHub Actions and workflows)
+   ☑ write:packages (Upload packages to GitHub Package Registry)
+
+4. Click "Generate token"
+
+5. 🔑 COPY THE TOKEN (you'll only see it once!)
+   Save it somewhere safe temporarily
+
+STEP 2: Use Token for Git Push
+──────────────────────────────
+
+When pushing, Git will ask for password.
+Use this format:
+
+Username: rjbutt203-web
+Password: [PASTE YOUR TOKEN HERE]
+
+Or configure Git to remember it:
+
+git config --global credential.helper store
+
+Then paste token when first prompted.
+
+STEP 3: Push to GitHub
+──────────────────────
+
+cd "c:\Users\Hack3r\OneDrive\Desktop\PROJECTS\snaplink"
+
+git push -u origin main
+
+When prompted:
+- Username: rjbutt203-web
+- Password: [Your Personal Access Token]
+
+✅ Your code will be uploaded to GitHub!
+
+STEP 4: Verify on GitHub
+────────────────────
+
+1. Go to https://github.com/rjbutt203-web/snaplink
+2. You should see all files:
+   - index.html
+   - styles.css
+   - script.js
+   - README.md
+   - And all other files
+
+3. Click the green "Code" button to confirm
+
+══════════════════════════════════════════════════════════════════════════════
+ALTERNATIVE: Use SSH (More Secure)
+══════════════════════════════════════════════════════════════════════════════
+
+If you want to avoid tokens for future pushes:
+
+1. Generate SSH Key:
+   ssh-keygen -t ed25519 -C "your-email@example.com"
+   
+   When prompted, press Enter for all defaults
+
+2. Add SSH Key to GitHub:
+   cat ~/.ssh/id_ed25519.pub
+   
+   Copy output and go to:
+   https://github.com/settings/ssh/new
+   
+   Paste the key and save
+
+3. Change remote to SSH:
+   git remote set-url origin git@github.com:rjbutt203-web/snaplink.git
+
+4. Push:
+   git push -u origin main
+
+══════════════════════════════════════════════════════════════════════════════
+
+Once pushed to GitHub, you can:
+
+✅ Deploy to Vercel: https://vercel.com/new
+✅ Deploy to Netlify: https://netlify.com
+✅ Deploy to GitHub Pages
+✅ Share code with collaborators
+✅ View on GitHub
+
+Next: Deploy on Vercel!
