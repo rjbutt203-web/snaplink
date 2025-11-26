@@ -1,5 +1,6 @@
 {
   "buildCommand": "",
   "outputDirectory": ".",
-  "framework": "html"
+  "framework": null,
+  "public": true
 }
